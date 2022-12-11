@@ -1,24 +1,40 @@
 package com.joshualine.datastructurealgorithm;
 
 public class Search {
-    public static int linear_search(int[] arr, int x){
-        for(int i = 0; i < arr.length; i++)
-            if(arr[i] == x){
+    public int linearSearch(int[] array, int target){
+        for(int i = 0; i < array.length; i++)
+            if(array[i] == target){
                 return i;
             }
         return -1;
     }
-    public static int binary_search(int[] arr, int x, int l, int r){
-        if(r >= l) {
-            int mid = l + (r-l)/2;
-            if(arr[mid] == x)
-                return mid;
-            if(arr[mid] > x)
-                //we are going left;
-                return binary_search(arr, x, l, mid-1);
-            if(arr[mid] < x)
-                //we are moving right;
-                return binary_search(arr, x, mid+1, r);
+
+    public int binarySearchRec(int[] arr, int target){
+        return binarySearchRec(arr, target, 0, arr.length - 1);
+    }
+    private int binarySearchRec(int[] array, int target, int left, int right){
+        if(right >= left) {
+            int middle = (left + right)/2;
+            if (target == array[middle])
+                return middle;
+            else if (target < array[middle])
+                return binarySearchRec(array, target, left, middle - 1);
+            return binarySearchRec(array, target, middle + 1, right);
+        }
+        return -1;
+    }
+
+    public int binarySearch(int[] array, int target){
+        int left = 0;
+        int right = array.length - 1;
+        while(right >= left){
+            int middle = (left + right) / 2;
+            if(target == array[middle])
+                return middle;
+            if (target < array[middle])
+                right = middle - 1;
+            else
+                left = middle + 1;
         }
         return -1;
     }
