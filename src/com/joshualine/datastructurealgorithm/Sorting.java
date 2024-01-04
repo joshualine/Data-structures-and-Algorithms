@@ -13,8 +13,7 @@ public class Sorting {
     }
     public static int selection_sort(int[] arr){
         int n = arr.length;
-        //Transverse to look for the minimum number
-        //switch the two numbers
+        
         return 0;
     }
 }
